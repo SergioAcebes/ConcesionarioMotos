@@ -18,11 +18,11 @@ public class Moto
     /**
      * Constructor de la clase Moto.
      */
-    public Moto(String marca,String modelo,int ano,int mes, int dia,int cilindrada,int bastidor)
+    public Moto(String marca,String modelo,int dia,int mes, int ano,int cilindrada,int bastidor)
     {
         this.marca = marca;
         this.modelo = modelo;
-        fechaProduccion = LocalDate.of(ano,mes,dia);
+        fechaProduccion = LocalDate.of(dia,mes,ano);
         this.cilindrada = cilindrada;
         numeroBastidor = bastidor;
     }
@@ -79,7 +79,7 @@ public class Moto
     /**
      * Permite modificar la fecha de produccion de la moto.
      */
-    public void setFechaProduccion(int ano,int mes, int dia){
+    public void setFechaProduccion(int dia,int mes, int ano){
         fechaProduccion = LocalDate.of(ano,mes,dia);
     }
     
@@ -89,9 +89,6 @@ public class Moto
     public void setCilindrada(int cilindrada){
         this.cilindrada = cilindrada;
     }
-    
-    
-    
     
     /**
      * Devuelve toda la informacion de la moto en formato String.

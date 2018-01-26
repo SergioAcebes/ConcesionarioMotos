@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.time.LocalDate;
+import java.util.Iterator;
 /**
  * Esta nos permitirá guardar objetos de tipo moto dentro de un objeto concesionario. 
  *
@@ -8,10 +9,10 @@ import java.time.LocalDate;
  */
 public class Concesionario
 {
-    
+
     private ArrayList<Moto> listaDeMotos; 
     private int numeroBastidor;
-    
+
     /**
      * Constructor de la clase Concesionario
      */
@@ -23,9 +24,9 @@ public class Concesionario
     /**
      * Añade una moto.
      */
-    public void addMoto(String marca,String modelo,int ano,int mes, int dia,int cilindrada)
+    public void addMoto(String marca,String modelo,int dia,int mes, int ano,int cilindrada)
     {
-        Moto nuevaMoto = new Moto(marca,modelo,dia,mes,ano,cilindrada,numeroBastidor);
+        Moto nuevaMoto = new Moto(marca,modelo,ano,mes,dia,cilindrada,numeroBastidor);
         listaDeMotos.add(nuevaMoto);
         numeroBastidor++;
     }
@@ -65,7 +66,7 @@ public class Concesionario
             }
         }
     }
-    
+
     /**
      * Imprime las motos odenadas en funcion de su cilindrada.
      */
@@ -89,7 +90,7 @@ public class Concesionario
             }
         }
     }
-    
+
     /**
      * Permite modificar la cilindrada de una moto.
      */
@@ -99,7 +100,20 @@ public class Concesionario
             cambioDeCilindrada.setCilindrada(nuevaCilindrada);
         }
     }
-    
-    
- 
+
+    /**
+     * Permite borrar las motos que sean mas viejas que una fecha introducido con un iterador.
+     */
+    public void eliminarMotosAntiguas(int dia,int mes, int ano){
+        Iterator<Moto> borrar = listaDeMotos.iterator();
+        LocalDate antiguas = LocalDate.of(ano,mes,dia);
+        while (borrar.hasNext()){
+            Moto vieja = borrar.next();
+            LocalDate fecha = vieja.getFechaProduccion();
+            if (fecha.isBefore(antiguas)){
+                borrar.remove();
+            }
+        }
+    }
+
 }

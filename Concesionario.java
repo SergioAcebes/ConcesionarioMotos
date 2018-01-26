@@ -23,7 +23,7 @@ public class Concesionario
     /**
      * Añade una moto.
      */
-    public void addMoto(String marca,String modelo,int dia,int mes, int ano,int cilindrada)
+    public void addMoto(String marca,String modelo,int ano,int mes, int dia,int cilindrada)
     {
         Moto nuevaMoto = new Moto(marca,modelo,dia,mes,ano,cilindrada,numeroBastidor);
         listaDeMotos.add(nuevaMoto);
@@ -33,7 +33,7 @@ public class Concesionario
     /**
      * Mostrar motos ordenadas por bastidor.
      */
-    public void mostrarMotos()
+    public void mostrarMotosPorBastidor()
     {
         int contador = 0;
         while (contador < listaDeMotos.size()){
@@ -69,7 +69,7 @@ public class Concesionario
     /**
      * Imprime las motos odenadas en funcion de su cilindrada.
      */
-    public void mostrarFecha(){
+    public void mostrarPorFecha(){
         if(listaDeMotos.size()>0) {
             ArrayList<Moto> motos = new ArrayList<>();
             motos.addAll(listaDeMotos);
@@ -89,6 +89,17 @@ public class Concesionario
             }
         }
     }
+    
+    /**
+     * Permite modificar la cilindrada de una moto.
+     */
+    public void modificarCilindrada(int idBastidor, int nuevaCilindrada){
+        if(listaDeMotos.size()>= idBastidor && idBastidor >= 0){
+            Moto cambioDeCilindrada = listaDeMotos.get(idBastidor - 1);
+            cambioDeCilindrada.setCilindrada(nuevaCilindrada);
+        }
+    }
+    
     
  
 }

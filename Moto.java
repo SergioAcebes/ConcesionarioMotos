@@ -18,7 +18,7 @@ public class Moto
     /**
      * Constructor de la clase Moto.
      */
-    public Moto(String marca,String modelo,int dia,int mes, int ano,int cilindrada,int bastidor)
+    public Moto(String marca,String modelo,int ano,int mes, int dia,int cilindrada,int bastidor)
     {
         this.marca = marca;
         this.modelo = modelo;
@@ -65,29 +65,29 @@ public class Moto
     /**
      * Permite modificar la marca de la moto.
      */
-    public String setMarca(){
-        return marca;
+    public void setMarca(String marca){
+        this.marca = marca;
     }
     
     /**
      * Permite modificar el modelo de la moto.
      */
-    public String setModelo(){
-        return modelo;
+    public void setModelo(String modelo){
+        this.modelo = modelo;
     }
     
     /**
      * Permite modificar la fecha de produccion de la moto.
      */
-    public LocalDate setFechaProduccion(){
-        return fechaProduccion;
+    public void setFechaProduccion(int ano,int mes, int dia){
+        fechaProduccion = LocalDate.of(ano,mes,dia);
     }
     
     /**
      * Permite modificar la cilindrada de la moto.
      */
-    public int setCilindrada(){
-        return cilindrada;
+    public void setCilindrada(int cilindrada){
+        this.cilindrada = cilindrada;
     }
     
     

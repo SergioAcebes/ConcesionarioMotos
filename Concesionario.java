@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.time.LocalDate;
 import java.util.Iterator;
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
 /**
  * Esta nos permitirá guardar objetos de tipo moto dentro de un objeto concesionario. 
  *
@@ -16,9 +19,32 @@ public class Concesionario
     /**
      * Constructor de la clase Concesionario
      */
-    public Concesionario(){
+    public Concesionario(String nombreArchivo){
+        
         listaDeMotos = new ArrayList<Moto>();
         numeroBastidor = 1;
+        
+        try {
+            File archivo = new File(nombreArchivo);
+            Scanner sc = new Scanner(archivo);
+            
+            while (sc.hasNextLine()) {
+                String [] wordArray = sc.nextLine().split(" # ");
+                String marca = wordArray[0];
+                String modelo = wordArray[1];
+                int dia = Integer.parseInt(wordArray[2]);
+                int mes = Integer.parseInt(wordArray[3]);
+                int ano = Integer.parseInt(wordArray[4]);
+                int cilindrada = Integer.parseInt(wordArray[5]);
+                
+                addMoto(marca,modelo,dia,mes,ano,cilindrada);
+                
+            }
+            sc.close();
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace(); 
+        }        
     }
 
     /**

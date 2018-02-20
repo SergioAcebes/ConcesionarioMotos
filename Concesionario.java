@@ -20,14 +20,14 @@ public class Concesionario
      * Constructor de la clase Concesionario
      */
     public Concesionario(String nombreArchivo){
-        
+
         listaDeMotos = new ArrayList<Moto>();
         numeroBastidor = 1;
-        
+
         try {
             File archivo = new File(nombreArchivo);
             Scanner sc = new Scanner(archivo);
-            
+
             while (sc.hasNextLine()) {
                 String [] wordArray = sc.nextLine().split(" # ");
                 String marca = wordArray[0];
@@ -36,9 +36,9 @@ public class Concesionario
                 int mes = Integer.parseInt(wordArray[3]);
                 int ano = Integer.parseInt(wordArray[4]);
                 int cilindrada = Integer.parseInt(wordArray[5]);
-                
+
                 addMoto(marca,modelo,dia,mes,ano,cilindrada);
-                
+
             }
             sc.close();
         }
@@ -112,6 +112,36 @@ public class Concesionario
                     }
                 }
                 System.out.println(motoMasAntigua.getDatosMoto());
+                motos.remove(posicion);
+            }
+        }
+    }
+
+    /**
+     * Imprime las motos odenadas en funcion de su fecha.
+     */
+    public void mostrarPorcilindrada2(){
+        int contador = 0;
+        if(listaDeMotos.size()>0) {
+            ArrayList<Moto> motos = new ArrayList<>();
+            motos.addAll(listaDeMotos);
+            Moto motoMayorCilindrada = motos.get(0);
+            for(int i = 0 ;i<listaDeMotos.size();i++){
+                int posAlta = 0;
+                int posicion = 0;
+                for(int cont=0;cont < motos.size();cont++){
+                    if(motos.get(cont).getCilindrada() >= posAlta){
+                        motoMayorCilindrada = motos.get(cont);
+                        posAlta = listaDeMotos.get(cont).getCilindrada();
+                        posicion = cont;
+                        
+                    }
+                }
+                if(motos.get(posicion).getCilindrada() != contador){
+                    System.out.println("Cilindrada : " + (motos.get(posicion).getCilindrada()));
+                    contador = motos.get(posicion).getCilindrada();
+                }
+                System.out.println(motoMayorCilindrada.getDatosMoto());
                 motos.remove(posicion);
             }
         }

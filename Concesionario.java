@@ -127,20 +127,29 @@ public class Concesionario
             motos.addAll(listaDeMotos);
             Moto motoMayorCilindrada = motos.get(0);
             for(int i = 0 ;i<listaDeMotos.size();i++){
+                
                 int posAlta = 0;
-                int posicion = 0;
+                int posicion = i;
                 for(int cont=0;cont < motos.size();cont++){
-                    if(motos.get(cont).getCilindrada() >= posAlta){
+                    if(motos.get(cont).getCilindrada() > posAlta){
                         motoMayorCilindrada = motos.get(cont);
                         posAlta = listaDeMotos.get(cont).getCilindrada();
                         posicion = cont;
-                        
+
+                    }
+                    else if(motoMayorCilindrada.getCilindrada() == motos.get(cont).getCilindrada()){
+                        if(motoMayorCilindrada.getMarca().compareToIgnoreCase(motos.get(cont).getMarca())>0){
+                            motoMayorCilindrada = motos.get(cont);
+                            posicion = cont;
+                        }
                     }
                 }
                 if(motos.get(posicion).getCilindrada() != contador){
                     System.out.println("Cilindrada : " + (motos.get(posicion).getCilindrada()));
                     contador = motos.get(posicion).getCilindrada();
+
                 }
+
                 System.out.println(motoMayorCilindrada.getDatosMoto());
                 motos.remove(posicion);
             }
